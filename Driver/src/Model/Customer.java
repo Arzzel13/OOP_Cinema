@@ -11,20 +11,26 @@ package Model;
  */
 public class Customer extends People {
     private String idCustomer;
-    private static int num = 1;
+    private String username;
+    private String pwd;
     
-    public Customer(String nama, String noHP){
+    public Customer(String nama, String noHP,String pwd){
         super(nama,noHP);
-        setIdCustomer();
-        
+        idCustomer = "C"+getLastThree(noHP);
     }
     
-    public void setIdCustomer() {
-        idCustomer = "Cust-"+getLastThree(getNoHP())+num;
-        num++;
+    public void setIdCustomer(String noHP) {
+        if(noHP.length()>3){
+            idCustomer = "C"+getLastThree(noHP);
+        }
     }
     
     public String getIdCustomer(){
         return idCustomer;
     }
+
+    public String getPwd() {
+        return pwd;
+    }
+    
 }
