@@ -13,38 +13,42 @@ import java.util.*;
  * @author Farizan Cesario
  */
 public class Booking {
-    private int jmlTiket;
-    private int totalHarga;
     private String idBooking;
-    private static int numBook;
+    private int jmlTiket;
+    private int totalHarga=0;
     private Film f;
+    private final int harga = 50000;
     private ArrayList<String> seat;
+    private String tempSeat;
     
-    public Booking(int jmlTiket, int totalHarga, ArrayList<String> seat) {
-        this.jmlTiket = jmlTiket;
-        this.totalHarga = totalHarga;
-        this.seat = seat;
-        f.getJudulFilm();
-        f.getTheater();
-        f.getHarga();
-        setIdBooking();
+    public Booking(ArrayList<String> seat) {
+        Random rand = new Random();
+        int n = rand.nextInt(100);
+        idBooking = "BK" + n;
+        for(String s:seat){
+            totalHarga += f.getHarga();
+        }
+        n +=1;
     }
     
-    public void setJmlTiket(int jmlTiket) {
-        this.jmlTiket = jmlTiket;
-    }
+//    public void setJmlTiket() {
+//        for(int counter = 0; counter < seat.size();counter++){
+//            jmlTiket = counter;
+//        }
+//    }    
+//    public void setTotalHarga() {
+//        this.totalHarga = totalHarga;
+//    }
     
-    public void setTotalHarga() {
-        this.totalHarga = totalHarga;
-    }
+//    public void setIdBooking() {
+//        idBooking = "Book-"+numBook;
+//    }
     
-    public void setIdBooking() {
-        idBooking = "Book-"+numBook;
-        numBook++;
-    }
-    
-    public void setSeat(ArrayList<String> seat){
-        this.seat = seat;
+ //   public void setSeat(ArrayList<String> seat){
+ //       this.seat = seat;
+ //   }
+    public String getJudulBK() {
+        return f.getJudulFilm();
     }
     
     public int getJmlTiket() {
@@ -59,12 +63,14 @@ public class Booking {
         return idBooking;
     }
     
-    public ArrayList<String> getSeat() {
-        return seat;
+    public String getSeat() {
+        for(String s: seat){
+            tempSeat += s + ",";
+        }
+        return tempSeat;
     }
     
-    public void calculateTotal(){
-        totalHarga = f.getHarga()*jmlTiket;
-    }
-
+//    public void calculateTotal(){
+//        totalHarga = f.getHarga()*jmlTiket;
+//    }
 }

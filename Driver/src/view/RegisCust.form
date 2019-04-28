@@ -58,8 +58,8 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -68,15 +68,10 @@
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jTFIDCust" max="32767" attributes="0"/>
-                              <Component id="jTFNama" alignment="0" max="32767" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jTFNoHP" min="-2" pref="115" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                                  <Component id="jBGenerate" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="jTFPassword" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jTFUsername" alignment="0" max="32767" attributes="0"/>
+                              <Component id="tfPassword" pref="227" max="32767" attributes="0"/>
+                              <Component id="tfNama" alignment="0" max="32767" attributes="0"/>
+                              <Component id="tfUsername" alignment="0" max="32767" attributes="0"/>
+                              <Component id="tfnoHP" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -88,7 +83,7 @@
               </Group>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  <Component id="jBConfirm" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnConfirm" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="139" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -98,34 +93,28 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jTFNoHP" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jBGenerate" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jTFNama" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tfNama" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jTFUsername" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tfnoHP" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jTFPassword" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tfUsername" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jTFIDCust" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tfPassword" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="76" max="32767" attributes="0"/>
-                  <Component id="jBConfirm" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="81" max="32767" attributes="0"/>
+                  <Component id="btnConfirm" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -160,39 +149,24 @@
             <Property name="text" type="java.lang.String" value="Password     :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTFNama">
+        <Component class="javax.swing.JTextField" name="tfNama">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTFNamaActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfNamaActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTFNoHP">
+        <Component class="javax.swing.JTextField" name="tfnoHP">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTFNoHPActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfnoHPActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTFUsername">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTFUsernameActionPerformed"/>
-          </Events>
+        <Component class="javax.swing.JTextField" name="tfUsername">
         </Component>
-        <Component class="javax.swing.JTextField" name="jTFPassword">
-        </Component>
-        <Component class="javax.swing.JButton" name="jBConfirm">
+        <Component class="javax.swing.JButton" name="btnConfirm">
           <Properties>
             <Property name="text" type="java.lang.String" value="Confirm"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel6">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="ID Customer :"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="jTFIDCust">
-        </Component>
-        <Component class="javax.swing.JButton" name="jBGenerate">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Generate"/>
-          </Properties>
+        <Component class="javax.swing.JTextField" name="tfPassword">
         </Component>
       </SubComponents>
     </Container>

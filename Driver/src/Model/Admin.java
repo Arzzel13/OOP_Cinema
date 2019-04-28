@@ -13,14 +13,16 @@ public class Admin extends People {
     private String idAdmin;
     private String pwd;
     
-    public Admin(String nama, String noHP, String idAdmin, String pwd){
+    public Admin(String nama, String noHP, String pwd){
         super(nama,noHP);
-        this.idAdmin = idAdmin;
+        idAdmin = "AD"+getLastThree(noHP);
         this.pwd = pwd;
     }
     
-    public void setIdAdmin(String idAdmin) {
-        this.idAdmin = idAdmin;
+    public void setIdAdmin(String noHP) {
+        if(noHP.length()>3){
+            idAdmin = "AD"+getLastThree(noHP);
+        }
     }
     
     public String getIdAdmin() {

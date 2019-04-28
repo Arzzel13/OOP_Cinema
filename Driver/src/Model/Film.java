@@ -12,13 +12,16 @@ import java.util.*;
  * @author Farizan Cesario
  */
 public class Film {
-    private int idFilm;
+    private String idFilm;
     private String judulFilm;
     private String theater;
     private final int harga = 50000;
-    private ArrayList<String> waktu = new ArrayList<String>();
+    private String waktu;
+    private static int num=1; 
     
-    public Film(String judulFilm, String theater, ArrayList<String> waktu){
+    public Film(String judulFilm, String theater, String waktu){
+        idFilm = "FL"+num;
+        num++;
         this.judulFilm = judulFilm;
         this.theater = theater;
         this.waktu = waktu;
@@ -32,7 +35,7 @@ public class Film {
         this.theater = theater;
     }
     
-    public void setWaktu(ArrayList<String> waktu){
+    public void setWaktu(String waktu){
         this.waktu = waktu;
     }
     
@@ -48,7 +51,12 @@ public class Film {
         return harga;
     }
     
-    public ArrayList<String> getWaktu() {
+    public String getWaktu() {
         return waktu;
     }
+
+    public String getIdFilm() {
+        return idFilm;
+    }
+    
 }

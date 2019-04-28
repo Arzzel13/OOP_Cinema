@@ -32,5 +32,9 @@ public class Customer extends People {
     public String getPwd() {
         return pwd;
     }
+
+    public String getUsername() {
+        return username;
+    }
     
 }
