@@ -6,21 +6,22 @@
 package Model;
 
 //import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.Statement;
+import java.sql.Statement;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Connection;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Zara
  */
 public class Database {
-    private Connection con = null;
-    private Statement stmt = null;
-    private ResultSet rs = null;
+    private Connection con;
+    private Statement stmt;
+    private ResultSet rs;
     ArrayList<Customer> cust;
     ArrayList<Film> film;
     ArrayList<Booking> book;
@@ -28,10 +29,11 @@ public class Database {
     
     public void connect() {
         try {
-            String url = "jdbc:mysql://localhost:3306/cinemadb";
+            String url = "jdbc:mysql://localhost/cinemadb";
             String username = "root";
             String pass = "";
             con = DriverManager.getConnection(url, username, pass);
+            stmt = con.createStatement();
             System.out.println("Connected");
         }
         catch (SQLException ex){
@@ -54,7 +56,7 @@ public class Database {
             cust = new ArrayList();
             rs = stmt.executeQuery("SELECT * FROM customer");
             while (rs.next()){
-                cust.add(new Customer(rs.getString("nama"), rs.getString("noHp"), rs.getString("pwd")));
+                cust.add(new Customer(rs.getString("nama"), rs.getString("noHp"), rs.getString("username"), rs.getString("pwd")));
             }
         } catch (Exception e){
             e.printStackTrace();
@@ -68,7 +70,7 @@ public class Database {
             film = new ArrayList();
             rs = stmt.executeQuery("SELECT * FROM film");
             while (rs.next()){
-                film.add(new Film(rs.getString("judulFilm"), rs.getString("theater"), rs.getString("waktu")));
+                film.add(new Film(rs.getString("idFilm"),rs.getString("judulFilm"), rs.getString("theater"), rs.getString("waktu")));
             }
         } catch (Exception e){
             e.printStackTrace();
@@ -82,7 +84,9 @@ public class Database {
             book = new ArrayList();
             rs = stmt.executeQuery("SELECT * FROM booking");
             while (rs.next()){
-                book.add(new Booking((ArrayList<String>) rs.getArray("seat")));
+                Film f = cariFilm(rs.getString("idFilm"));
+                Customer c = cariCustomer(rs.getString("idCustomer"));
+                book.add(new Booking(c, f, (ArrayList<String>) rs.getArray("seat")));
             }
         } catch (Exception e){
             e.printStackTrace();
@@ -104,12 +108,46 @@ public class Database {
         disconnect();
     }
     
+    public Film cariFilm(String id){
+        connect();
+        Film f = null;
+        try {
+            rs = stmt.executeQuery("SELECT * FROM film");
+            while(rs.next()){
+                if (id.equals(rs.getString("idFilm"))){
+                    f = new Film(rs.getString("idFilm"),rs.getString("judulFilm"), rs.getString("theater"), rs.getString("waktu"));
+                }
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        disconnect();
+        return f;
+    }
+    
+    public Customer cariCustomer(String id){
+        connect();
+        Customer c = null;
+        try {
+            rs = stmt.executeQuery("SELECT * FROM customer");
+            while(rs.next()){
+                if (id.equals(rs.getString("idCustomer"))){
+                    c = new Customer(rs.getString("nama"), rs.getString("noHp"), rs.getString("username"), rs.getString("pwd"));
+                }
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        disconnect();
+        return c;
+    }    
+    
     public boolean insertCustomer(Customer c){
         connect();
         boolean cek = false;
         int row;
         try {
-            row = stmt.executeUpdate("INSERT INTO customer(nama, noHP, idCustomer, username, password)VALUES('"+c.getNama()+"', '"+c.getNoHP()+"', '"+c.getIdCustomer()+"', '"+c.getUsername()+"', '"+c.getPwd()+"'");
+            row = stmt.executeUpdate("INSERT INTO customer(nama, noHP, idCustomer, username, pwd)VALUES('"+c.getNama()+"', '"+c.getNoHP()+"', '"+c.getIdCustomer()+"', '"+c.getUsername()+"', '"+c.getPwd()+"')");
             if (row > 0){
                 cek = true;
             }
@@ -125,7 +163,7 @@ public class Database {
         boolean cek = false;
         int row;
         try {
-            row = stmt.executeUpdate("INSERT INTO film(idFilm, judulFilm, theater, waktu)VALUES('"+f.getIdFilm()+"', '"+f.getJudulFilm()+"', '"+f.getTheater()+"', '"+f.getWaktu()+"'");
+            row = stmt.executeUpdate("INSERT INTO film(idFilm, judulFilm, theater, waktu)VALUES('"+f.getIdFilm()+"', '"+f.getJudulFilm()+"', '"+f.getTheater()+"', '"+f.getWaktu()+"')");
             if (row > 0){
                 cek = true;
             }
@@ -141,7 +179,7 @@ public class Database {
         boolean cek = false;
         int row;
         try {
-            row = stmt.executeUpdate("INSERT INTO booking(idBooking,judulFilm, jmlTiket, totalHarga, kursiDipilih)VALUES('"+b.getIdBooking()+"', '"+b.getJudulBK()+"', '"+b.getJmlTiket()+"', '"+b.getTotalHarga()+"', '"+b.getSeat()+"'");
+            row = stmt.executeUpdate("INSERT INTO booking(idBooking,judulFilm, jmlTiket, totalHarga, kursiDipilih)VALUES('"+b.getIdBooking()+"', '"+b.getJudulBK()+"', '"+b.getJmlTiket()+"', '"+b.getTotalHarga()+"', '"+b.getSeat()+"')");
             if (row > 0){
                 cek = true;
             }
@@ -149,6 +187,21 @@ public class Database {
             e.printStackTrace();
         }
         disconnect();
+        return cek;
+    }
+    
+    public boolean deleteFilm(String id){
+        boolean cek = false;
+        connect();
+        int row;
+        try {
+            row = stmt.executeUpdate("DELETE FROM film WHERE idFilm = '"+ id +"'");
+            if (row > 0 ){
+                cek = true;
+            }
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Delete Film", JOptionPane.ERROR_MESSAGE);
+        }
         return cek;
     }
     

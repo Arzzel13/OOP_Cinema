@@ -19,9 +19,8 @@ public class Film {
     private String waktu;
     private static int num=1; 
     
-    public Film(String judulFilm, String theater, String waktu){
-        idFilm = "FL"+num;
-        num++;
+    public Film(String idFilm, String judulFilm, String theater, String waktu){
+        this.idFilm = idFilm;
         this.judulFilm = judulFilm;
         this.theater = theater;
         this.waktu = waktu;

@@ -14,9 +14,11 @@ public class Customer extends People {
     private String username;
     private String pwd;
     
-    public Customer(String nama, String noHP,String pwd){
+    public Customer(String nama, String noHP, String username, String pwd){
         super(nama,noHP);
         idCustomer = "C"+getLastThree(noHP);
+        this.username = username;
+        this.pwd = pwd;
     }
     
     public void setIdCustomer(String noHP) {
